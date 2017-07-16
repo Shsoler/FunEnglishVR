@@ -1,6 +1,7 @@
 extends Spatial
+
 var propriedade = "nenhuma"
-var cor = "RED"
+var cor = "BLUE"
 
 func _ready():
 	# Called every time the node is added to the scene.

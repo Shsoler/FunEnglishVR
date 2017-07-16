@@ -36,6 +36,7 @@ func _process(delta):
 	temporizador += delta
 	if(get_node("Camera/RayCast").is_colliding()):
 		objetocolisao = get_node("Camera/RayCast").get_collider()
+		get_node("Camera/Label 2").set_text(objetocolisao.propriedade)
 		if objetocolisao.propriedade == get_node("Camera/Label").get_text():
 			get_node("Camera/TextureProgress").set_value(get_node("Camera/TextureProgress").get_value()-temporizador)
 			if temporizador >= 1.0:
