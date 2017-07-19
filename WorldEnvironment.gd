@@ -11,9 +11,42 @@ func init_root(global_node, root_node, parent_node):
     root = root_node
     parent = parent_node
 
-var posicao = [Vector3(-5,0,-5),Vector3(-5,0,-5),Vector3(-5,0,-5)]
+var posicao = [Vector3(-5,2,-5),Vector3(0,2,-5),Vector3(5,2,-5)]
 func _ready():
- sizephase()
+ distancephase()
+
+func distancephase():
+   var objs = {1:["res://modelos/cubovermelho.scn","res://modelos/cuboazul.scn","res://modelos/cuboverde.scn"],
+2:["res://modelos/cubovermelho.scn","res://modelos/cuboazul.scn","res://modelos/cuboverde.scn"],
+3: ["res://modelos/bolavermelha.scn","res://modelos/bolaazul.scn","res://modelos/bolaverde.scn"]} 
+   randomize()
+   var indiceale = randi()%(objs.size())+1
+   var externalScene = objs[indiceale]
+   var tam = ["FAR","NEAR"]
+   while tam.size() > 0:
+     randomize()
+     var instanciaindex = randi()%(externalScene.size())+0
+     var pos = randi()%(posicao.size())+0
+     print(randi()%(posicao.size())+0)
+     var inst = load(externalScene[instanciaindex]).instance()
+     inst.set_scale(Vector3(0.5,0.5,0.5))
+     inst.global_translate(posicao[pos])
+     randomize()
+     var indextam = randi()%(tam.size())+0
+     var posatual = inst.get_translation()
+     if(tam[indextam] == "FAR"):
+      inst.global_translate(Vector3(0,0,3)+posatual)
+     #inst.global_translate(posatual+Vector3(0,0,posatual.x*-1.3))
+    #if(tam[indextam] == "MEDIUM"):
+     #inst.set_scale(Vector3(1,1,1))
+     if(tam[indextam] == "NEARBY"):
+      inst.global_translate(Vector3(0,0,3)+posatual)
+     posicao.remove(pos)
+     inst.adicionarprop(tam[indextam])
+     tam.remove(indextam)
+     self.add_child(inst)
+     externalScene.remove(instanciaindex)
+     get_node("TestCube/Camera/Label").set_text(inst.propriedade)
 
 func sizephase():
  var objs = {1:["res://modelos/cubovermelho.scn","res://modelos/cuboazul.scn","res://modelos/cuboverde.scn"],
@@ -33,8 +66,10 @@ func sizephase():
    inst.global_translate(posicao[pos])
    randomize()
    var indextam = randi()%(tam.size())+0
+   var posatual = inst.get_translation()
    if(tam[indextam] == "BIG"):
     inst.set_scale(Vector3(1.3,1.3,1.3))
+    #inst.global_translate(posatual+Vector3(0,0,posatual.x*-1.3))
    #if(tam[indextam] == "MEDIUM"):
     #inst.set_scale(Vector3(1,1,1))
    if(tam[indextam] == "SMALL"):
@@ -67,7 +102,7 @@ func colorphase():
    print(randi()%(posicao.size())+0)
    var inst = load(e).instance()
    inst.set_scale(Vector3(0.5,0.5,0.5))
-   inst.set_transform(posicao[pos])
+   inst.global_translate(posicao[pos])
    posicao.remove(pos)
    inst.adicionarprop(inst.cor)
    self.add_child(inst)

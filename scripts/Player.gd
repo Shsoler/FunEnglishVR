@@ -8,7 +8,7 @@ const max_accel = 0.02;
 const air_accel = 0.1;
 
 func _input(ie):
-
+    
 	set_process(true)
 	if ie.type == InputEvent.MOUSE_MOTION:
 		var yaw = rad2deg(get_node(".").get_rotation().y);
@@ -19,8 +19,18 @@ func _input(ie):
 		
 		get_node(".").set_rotation(Vector3(0, deg2rad(yaw), 0));
 		get_node("Camera").set_rotation(Vector3(deg2rad(pitch), 0, 0));
-
-		
+	if Input.is_action_pressed("mv_up"):
+		var pos_atual = self.get_translation()+Vector3(0,0,-1)
+		self.set_translation(pos_atual)
+	if Input.is_action_pressed("mv_down"):
+		var pos_atual = self.get_translation()+Vector3(0,0,1)
+		self.set_translation(pos_atual)
+	if Input.is_action_pressed("mv_left"):
+		var pos_atual = self.get_translation()+Vector3(-1,0,0)
+		self.set_translation(pos_atual)
+	if Input.is_action_pressed("mv_right"):
+		var pos_atual = self.get_translation()+Vector3(1,0,0)
+		self.set_translation(pos_atual)
 func _ready():
 	set_process_input(true);
 

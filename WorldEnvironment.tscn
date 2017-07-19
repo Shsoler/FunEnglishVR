@@ -215,6 +215,21 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
+[node name="Label1" type="Label" parent="TestCube/Camera"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 119.0
+margin/right = 182.0
+margin/bottom = 178.0
+text = "COR"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
 [node name="TextureProgress" type="TextureProgress" parent="TestCube/Camera"]
 
 rect/scale = Vector2( 0.05, 0.05 )
@@ -326,10 +341,49 @@ shadow/max_distance = 0.0
 shadow/split_weight = 0.5
 shadow/zoffset_scale = 2.0
 
+[node name="TestCube 3" type="TestCube" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 15, 0, 0, 0, 1, 0, 0, 0, 17, 1.02802, -1.80164, -4.39103 )
+layers = 1
+geometry/visible = true
+geometry/material_override = null
+geometry/cast_shadow = 1
+geometry/receive_shadows = true
+geometry/range_begin = 0.0
+geometry/range_end = 0.0
+geometry/extra_cull_margin = 0.0
+geometry/billboard = false
+geometry/billboard_y = false
+geometry/depth_scale = false
+geometry/visible_in_all_rooms = false
+geometry/use_baked_light = false
+geometry/baked_light_tex_id = 0
+
+[node name="Area" type="Area" parent="TestCube 3"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 1.13856, 0 )
+input/ray_pickable = false
+input/capture_on_drag = false
+shape_count = 0
+space_override = 0
+gravity_point = true
+gravity_distance_scale = 0.0
+gravity_vec = Vector3( 0, -1, 0 )
+gravity = 9.8
+linear_damp = 0.1
+angular_damp = 1.0
+priority = 0.0
+monitoring = true
+monitorable = true
+collision/layers = 1
+collision/mask = 1
+
 [node name="TestCube 2" type="TestCube" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 13, 12.9404, 3.81948, 0.0994442 )
+transform/local = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 17, 12.9404, 3.81948, -4.39103 )
 layers = 1
 geometry/visible = true
 geometry/material_override = SubResource( 1 )
@@ -348,7 +402,7 @@ geometry/baked_light_tex_id = 0
 [node name="TestCube3" type="TestCube" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 0.999988, -0.0165087, -0.0481014, 0.0032793, 4.99988, -0.0786877, 0.00372, 0.0302035, 12.9997, -12.834, 4.23044, 0.101307 )
+transform/local = Transform( 0.999988, -0.0165087, -0.0592017, 0.0032793, 4.99988, -0.0968467, 0.00372, 0.0302035, 15.9996, -12.834, 4.23044, -4.89382 )
 layers = 1
 geometry/visible = true
 geometry/material_override = SubResource( 3 )
@@ -367,7 +421,7 @@ geometry/baked_light_tex_id = 0
 [node name="TestCube4" type="TestCube" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 13, 0, 0, 0, 5, 0, 0, 0, 1, -0.522222, 4.32197, -13.084 )
+transform/local = Transform( 13, 0, 0, 0, 5, 0, 0, 0, 1, -0.522222, 4.32197, -21.6046 )
 layers = 1
 geometry/visible = true
 geometry/material_override = SubResource( 4 )
