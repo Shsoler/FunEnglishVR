@@ -1,11 +1,12 @@
 extends TestCube
+var vidas = 3
+var pontuacao = 0
+var view_sensitivity = 0.3
 
-var view_sensitivity = 0.3;
-
-const walk_speed = 5;
-const jump_speed = 3;
-const max_accel = 0.02;
-const air_accel = 0.1;
+const walk_speed = 5
+const jump_speed = 3
+const max_accel = 0.02
+const air_accel = 0.1
 
 func _input(ie):
     
@@ -47,12 +48,19 @@ func _process(delta):
 	if(get_node("Camera/RayCast").is_colliding()):
 		objetocolisao = get_node("Camera/RayCast").get_collider()
 		get_node("Camera/Label 2").set_text(objetocolisao.propriedade)
-		if objetocolisao.propriedade == get_node("Camera/Label").get_text():
-			get_node("Camera/TextureProgress").set_value(get_node("Camera/TextureProgress").get_value()-temporizador)
-			if temporizador >= 1.0:
-				temporizador = 0
-			if get_node("Camera/TextureProgress").get_value() == 0:
-				objetocolisao.hide()
+		
+		get_node("Camera/TextureProgress").set_value(get_node("Camera/TextureProgress").get_value()-temporizador)
+		if temporizador >= 1.0:
+			temporizador = 0
+		if get_node("Camera/TextureProgress").get_value() == 0:
+			#objetocolisao.hide()
+			if objetocolisao.propriedade == get_node("Camera/Label").get_text():
+				pontuacao+=1
+				get_node("Camera/Label1").set_text(pontuacao)
+				get_tree().reload_current_scene()
+			else:
+				var coracoes = [get_node("Camera/h1"),get_node("Camera/h2"),get_node("Camera/h3")]
+				coracoes[3-vidas].hide()
 	else:
 		get_node("Camera/TextureProgress").set_value(60)
 		

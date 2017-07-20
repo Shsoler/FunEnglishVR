@@ -12,8 +12,16 @@ func init_root(global_node, root_node, parent_node):
     parent = parent_node
 
 var posicao = [Vector3(-5,2,-5),Vector3(0,2,-5),Vector3(5,2,-5)]
+var posicao2 = [Vector3(-3,2,-5),Vector3(3,2,-5)]
 func _ready():
- distancephase()
+ randomize()
+ var opt = randi()%(2)+0
+ if(opt == 0): 
+  distancephase()
+ if(opt == 1): 
+  colorphase()
+ if(opt == 2): 
+  sizephase()
 
 func distancephase():
    var objs = {1:["res://modelos/cubovermelho.scn","res://modelos/cuboazul.scn","res://modelos/cuboverde.scn"],
@@ -26,22 +34,17 @@ func distancephase():
    while tam.size() > 0:
      randomize()
      var instanciaindex = randi()%(externalScene.size())+0
-     var pos = randi()%(posicao.size())+0
-     print(randi()%(posicao.size())+0)
+     var pos = randi()%(posicao2.size())+0
+     print(randi()%(posicao2.size())+0)
      var inst = load(externalScene[instanciaindex]).instance()
-     inst.set_scale(Vector3(0.5,0.5,0.5))
-     inst.global_translate(posicao[pos])
+     #inst.set_scale(Vector3(0.5,0.5,0.5))
+     inst.global_translate(posicao2[pos])
      randomize()
      var indextam = randi()%(tam.size())+0
      var posatual = inst.get_translation()
      if(tam[indextam] == "FAR"):
-      inst.global_translate(Vector3(0,0,3)+posatual)
-     #inst.global_translate(posatual+Vector3(0,0,posatual.x*-1.3))
-    #if(tam[indextam] == "MEDIUM"):
-     #inst.set_scale(Vector3(1,1,1))
-     if(tam[indextam] == "NEARBY"):
-      inst.global_translate(Vector3(0,0,3)+posatual)
-     posicao.remove(pos)
+      inst.global_translate(Vector3(0,0,-7)+posatual)
+     posicao2.remove(pos)
      inst.adicionarprop(tam[indextam])
      tam.remove(indextam)
      self.add_child(inst)
