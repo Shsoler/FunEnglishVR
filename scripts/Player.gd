@@ -1,6 +1,5 @@
 extends TestCube
-var vidas = 3
-var pontuacao = 0
+
 var view_sensitivity = 0.3
 
 const walk_speed = 5
@@ -11,6 +10,7 @@ const air_accel = 0.1
 func _input(ie):
     
 	set_process(true)
+	
 	if ie.type == InputEvent.MOUSE_MOTION:
 		var yaw = rad2deg(get_node(".").get_rotation().y);
 		var pitch = rad2deg(get_node("Camera").get_rotation().x);
@@ -43,6 +43,8 @@ func _exit_tree():
 	
 var temporizador = 0.0
 func _process(delta):
+	get_node("Camera/Label").set_text(Globals.get("TIPO")+" "+Globals.get("PROP"))
+	get_node("Camera/Label2").set_text("Tempo: "+str(Globals.get("tempo")))
 	var objetocolisao
 	temporizador += delta
 	if(get_node("Camera/RayCast").is_colliding()):
@@ -54,13 +56,21 @@ func _process(delta):
 			temporizador = 0
 		if get_node("Camera/TextureProgress").get_value() == 0:
 			#objetocolisao.hide()
-			if objetocolisao.propriedade == get_node("Camera/Label").get_text():
-				pontuacao+=1
-				get_node("Camera/Label1").set_text(pontuacao)
-				get_tree().reload_current_scene()
+			if objetocolisao.propriedade == Globals.get("PROP"):
+				var pontos = Globals.get("pontos")
+				pontos +=1
+				get_node("Camera/Label1").set_text(str(pontos))
+				Globals.set("pontos",pontos)
+				get_node("Camera/TextureProgress").set_value(60)
+				Globals.set("next",true)
 			else:
 				var coracoes = [get_node("Camera/h1"),get_node("Camera/h2"),get_node("Camera/h3")]
-				coracoes[3-vidas].hide()
+				var vidasrestantes = Globals.get("vidas")
+				if(vidasrestantes > 0):
+					coracoes[3-vidasrestantes].hide()
+					vidasrestantes -= 1
+					Globals.set("vidas",vidasrestantes)
+					get_node("Camera/TextureProgress").set_value(60)
 	else:
 		get_node("Camera/TextureProgress").set_value(60)
 		

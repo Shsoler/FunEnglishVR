@@ -4,7 +4,8 @@ var corematriz = [Color(255,0,0),Color(0,0,255),Color(0,255,0)]
 var global
 var root
 var parent
-
+var listainstancia = []
+var temporestante = 10
 
 func init_root(global_node, root_node, parent_node):
     global = global_node
@@ -14,15 +15,35 @@ func init_root(global_node, root_node, parent_node):
 var posicao = [Vector3(-5,2,-5),Vector3(0,2,-5),Vector3(5,2,-5)]
 var posicao2 = [Vector3(-3,2,-5),Vector3(3,2,-5)]
 func _ready():
+ Globals.set("PROP","")
+ Globals.set("tempo",temporestante)
+ carregarFase()
+ set_process(true)
+
+func _process(delta):
+ if temporestante > 1: 
+  temporestante -=delta
+ Globals.set("tempo",round(temporestante))
+ print(temporestante)
+ if(Globals.get("next")):
+  for e in listainstancia:
+   e.queue_free()
+   Globals.set("next",false)
+   posicao = [Vector3(-5,2,-5),Vector3(0,2,-5),Vector3(5,2,-5)]
+   posicao2 = [Vector3(-3,2,-5),Vector3(3,2,-5)]
+  listainstancia = [] 
+  temporestante = 10
+  carregarFase()
+func carregarFase():
  randomize()
- var opt = randi()%(2)+0
+ var opt = randi()%(3)+0
  if(opt == 0): 
   distancephase()
  if(opt == 1): 
   colorphase()
  if(opt == 2): 
   sizephase()
-
+ 
 func distancephase():
    var objs = {1:["res://modelos/cubovermelho.scn","res://modelos/cuboazul.scn","res://modelos/cuboverde.scn"],
 2:["res://modelos/cubovermelho.scn","res://modelos/cuboazul.scn","res://modelos/cuboverde.scn"],
@@ -37,6 +58,7 @@ func distancephase():
      var pos = randi()%(posicao2.size())+0
      print(randi()%(posicao2.size())+0)
      var inst = load(externalScene[instanciaindex]).instance()
+     listainstancia.append(inst)
      #inst.set_scale(Vector3(0.5,0.5,0.5))
      inst.global_translate(posicao2[pos])
      randomize()
@@ -49,8 +71,8 @@ func distancephase():
      tam.remove(indextam)
      self.add_child(inst)
      externalScene.remove(instanciaindex)
-     get_node("TestCube/Camera/Label").set_text(inst.propriedade)
-
+     Globals.set("PROP",inst.propriedade)
+     Globals.set("TIPO","Distancia")
 func sizephase():
  var objs = {1:["res://modelos/cubovermelho.scn","res://modelos/cuboazul.scn","res://modelos/cuboverde.scn"],
 2:["res://modelos/cubovermelho.scn","res://modelos/cuboazul.scn","res://modelos/cuboverde.scn"],
@@ -65,6 +87,7 @@ func sizephase():
    var pos = randi()%(posicao.size())+0
    print(randi()%(posicao.size())+0)
    var inst = load(externalScene[instanciaindex]).instance()
+   listainstancia.append(inst)
    inst.set_scale(Vector3(0.5,0.5,0.5))
    inst.global_translate(posicao[pos])
    randomize()
@@ -82,8 +105,8 @@ func sizephase():
    tam.remove(indextam)
    self.add_child(inst)
    externalScene.remove(instanciaindex)
-   get_node("TestCube/Camera/Label").set_text(inst.propriedade)
-
+   Globals.set("PROP",inst.propriedade)
+   Globals.set("TIPO","Tamanho")
 
 func colorphase():
  #var externalScene = ["res://modelos/carro.scn","res://modelos/carroazul.scn","res://modelos/carrogreen.scn"]
@@ -97,13 +120,12 @@ func colorphase():
  var indiceale = randi()%(objs.size())+1
  print("ola"+str(indiceale))
  var externalScene = objs[indiceale]
- 
-
  for e in externalScene:
    randomize()
    var pos = randi()%(posicao.size())+0
    print(randi()%(posicao.size())+0)
    var inst = load(e).instance()
+   listainstancia.append(inst)
    inst.set_scale(Vector3(0.5,0.5,0.5))
    inst.global_translate(posicao[pos])
    posicao.remove(pos)
@@ -112,9 +134,9 @@ func colorphase():
 
  var coraleatoria = randi()%(3)+0
  if coraleatoria == 0:
-  get_node("TestCube/Camera/Label").set_text("RED")
+  Globals.set("PROP","RED")
  if coraleatoria == 1:
-  get_node("TestCube/Camera/Label").set_text("BLUE")
+  Globals.set("PROP","BLUE")
  if coraleatoria == 2:
-  get_node("TestCube/Camera/Label").set_text("GREEN")
- 
+  Globals.set("PROP","GREEN")
+ Globals.set("TIPO","Cor")
