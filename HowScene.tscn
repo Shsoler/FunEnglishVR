@@ -1,0 +1,67 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://PlayerMenu.tscn" type="PackedScene" id=1]
+[ext_resource path="res://image/howtopage.png" type="Texture" id=2]
+[ext_resource path="res://voltar.tscn" type="PackedScene" id=3]
+
+[node name="WorldEnvironment" type="WorldEnvironment"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+environment = null
+
+[node name="TestCube" parent="." instance=ExtResource( 1 )]
+
+[node name="comojogar" type="KinematicBody" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.372721, 2.54858, -5.34745 )
+input/ray_pickable = true
+input/capture_on_drag = false
+shape_count = 0
+collision/layers = 1
+collision/mask = 1
+collide_with/static = true
+collide_with/kinematic = true
+collide_with/rigid = true
+collide_with/character = true
+collision/margin = 0.001
+
+[node name="Sprite3D" type="Sprite3D" parent="comojogar"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+layers = 1
+geometry/visible = true
+geometry/material_override = null
+geometry/cast_shadow = 1
+geometry/receive_shadows = true
+geometry/range_begin = 0.0
+geometry/range_end = 0.0
+geometry/extra_cull_margin = 0.0
+geometry/billboard = false
+geometry/billboard_y = false
+geometry/depth_scale = false
+geometry/visible_in_all_rooms = false
+geometry/use_baked_light = false
+geometry/baked_light_tex_id = 0
+centered = true
+offset = Vector2( 0, 0 )
+flip_h = false
+flip_v = false
+modulate = Color( 1, 1, 1, 1 )
+opacity = 1.0
+pixel_size = 0.01
+axis = 2
+flags/transparent = true
+flags/shaded = false
+flags/alpha_cut = 1090519040
+texture = ExtResource( 2 )
+vframes = 1
+hframes = 1
+frame = 0
+region = false
+region_rect = Rect2( 0, 0, 0, 0 )
+
+[node name="voltar" parent="." instance=ExtResource( 3 )]
+
+
+[editable path="TestCube"]

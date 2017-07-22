@@ -15,16 +15,22 @@ func init_root(global_node, root_node, parent_node):
 var posicao = [Vector3(-5,2,-5),Vector3(0,2,-5),Vector3(5,2,-5)]
 var posicao2 = [Vector3(-3,2,-5),Vector3(3,2,-5)]
 func _ready():
+ var temporestante = 10
  Globals.set("PROP","")
  Globals.set("tempo",temporestante)
  carregarFase()
  set_process(true)
 
 func _process(delta):
- if temporestante > 1: 
+ if temporestante > 0: 
   temporestante -=delta
  Globals.set("tempo",round(temporestante))
- print(temporestante)
+ if temporestante == 0:
+  Globals.set("next",true)
+  if(Globals.get("vidas") > 0):
+   Globals.set("vidas",Globals.get("vidas")-1)
+  else:
+   get_tree().change_scene("res://GameOVer.tscn")
  if(Globals.get("next")):
   for e in listainstancia:
    e.queue_free()
@@ -56,7 +62,7 @@ func distancephase():
      randomize()
      var instanciaindex = randi()%(externalScene.size())+0
      var pos = randi()%(posicao2.size())+0
-     print(randi()%(posicao2.size())+0)
+     #print(randi()%(posicao2.size())+0)
      var inst = load(externalScene[instanciaindex]).instance()
      listainstancia.append(inst)
      #inst.set_scale(Vector3(0.5,0.5,0.5))

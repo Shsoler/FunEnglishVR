@@ -6,8 +6,7 @@ const walk_speed = 5
 const jump_speed = 3
 const max_accel = 0.02
 const air_accel = 0.1
-var vidasrestantes = 3
-var wait = false
+
 func _input(ie):
     
 	set_process(true)
@@ -34,8 +33,7 @@ func _input(ie):
 		var pos_atual = self.get_translation()+Vector3(1,0,0)
 		self.set_translation(pos_atual)
 func _ready():
-	set_process_input(true)
-	set_fixed_process(true)
+	set_process_input(true);
 
 func _enter_tree():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED);
@@ -45,40 +43,22 @@ func _exit_tree():
 	
 var temporizador = 0.0
 func _process(delta):
-	vidasrestantes = Globals.get("vidas")
-	var coracoes = [get_node("Camera/h1"),get_node("Camera/h2"),get_node("Camera/h3")]
-	get_node("Camera/Label").set_text(Globals.get("TIPO")+" "+Globals.get("PROP"))
-	get_node("Camera/Label2").set_text("Tempo: "+str(Globals.get("tempo")))
 	var objetocolisao
 	temporizador += delta
-	if Globals.get("vidas") < 1:
-		get_tree().change_scene("res://GameOVer.tscn")
 	if(get_node("Camera/RayCast").is_colliding()):
 		objetocolisao = get_node("Camera/RayCast").get_collider()
-		get_node("Camera/Label 2").set_text(objetocolisao.propriedade)
-		
 		get_node("Camera/TextureProgress").set_value(get_node("Camera/TextureProgress").get_value()-temporizador)
 		if temporizador >= 1.0:
 			temporizador = 0
 		if get_node("Camera/TextureProgress").get_value() == 0:
-			#objetocolisao.hide()
-			if objetocolisao.propriedade == Globals.get("PROP"):
-				var pontos = Globals.get("pontos")
-				pontos +=1
-				get_node("Camera/Label1").set_text(str(pontos))
-				Globals.set("pontos",pontos)
-				get_node("Camera/TextureProgress").set_value(60)
-				Globals.set("next",true)
-			else:
-				if(vidasrestantes > 0):
-					coracoes[3-vidasrestantes].hide()
-					vidasrestantes -= 1
-					Globals.set("vidas",vidasrestantes)
-					get_node("Camera/TextureProgress").set_value(60)
+			if objetocolisao.acao == "start":
+				get_tree().change_scene(objetocolisao.cena)
+			if objetocolisao.acao == "how":
+				get_tree().change_scene(objetocolisao.cena)
+			if objetocolisao.acao == "voltar":
+				get_tree().change_scene(objetocolisao.cena)
+			if objetocolisao.acao == "exit":
+				get_tree().quit()
 	else:
 		get_node("Camera/TextureProgress").set_value(60)
-	var espera = 0
-	
-func _fixed_process(delta):
-		if round(Globals.get("tempo")) == 0:
-			Globals.set("next",true)
+		
