@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://WorldEnvironment.gd" type="Script" id=1]
+[ext_resource path="res://painelGUI.tscn" type="PackedScene" id=2]
 
 [sub_resource type="FixedMaterial" id=1]
 
@@ -150,10 +151,47 @@ textures/glow_tc = 0
 textures/normal_tc = 0
 textures/shade_param_tc = 0
 
+[sub_resource type="FixedMaterial" id=5]
+
+flags/visible = true
+flags/double_sided = false
+flags/invert_faces = false
+flags/unshaded = false
+flags/on_top = false
+flags/lightmap_on_uv2 = true
+flags/colarray_is_srgb = true
+params/blend_mode = 0
+params/depth_draw = 1
+params/line_width = 0.0
+fixed_flags/use_alpha = false
+fixed_flags/use_color_array = false
+fixed_flags/use_point_size = false
+fixed_flags/discard_alpha = false
+fixed_flags/use_xy_normalmap = false
+params/diffuse = Color( 1, 1, 1, 1 )
+params/specular = Color( 0, 0, 0, 1 )
+params/emission = Color( 0, 0, 0, 1 )
+params/specular_exp = 40
+params/detail_mix = 1.0
+params/normal_depth = 1
+params/shader = 0
+params/shader_param = 0.5
+params/glow = 0
+params/point_size = 1.0
+uv_xform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+textures/diffuse_tc = 0
+textures/detail_tc = 0
+textures/specular_tc = 0
+textures/emission_tc = 0
+textures/specular_exp_tc = 0
+textures/glow_tc = 0
+textures/normal_tc = 0
+textures/shade_param_tc = 0
+
 [node name="WorldEnvironment" type="WorldEnvironment"]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.1283 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.17719, 0, -4.1283 )
 environment = null
 script/script = ExtResource( 1 )
 
@@ -184,7 +222,7 @@ shadow/zoffset_scale = 2.0
 [node name="DirectionalLight1" type="DirectionalLight" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 2.88099, 0.677269, 0.491139, -0.832271, 2.14114, 1.92947, 0.0850567, -1.98918, 2.24409, -1.39338, 14.2715, 12.8858 )
+transform/local = Transform( 0.617591, -0.406318, 0.673414, 0.0386102, 0.870848, 0.490034, -0.785551, -0.27664, 0.553516, 0.340102, 3.37221, 7.554 )
 visibility/visible = false
 layers = 1
 params/enabled = true
@@ -234,7 +272,8 @@ shadow/zoffset_scale = 2.0
 
 editor/display_folded = true
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 15, 0, 0, 0, 1, 0, 0, 0, 17, 0.936079, -1.7678, -4.4412 )
+transform/local = Transform( 15, 0, 0, 0, 1, 0, 0, 0, 17, 0.965764, -1.7678, -4.44789 )
+visibility/visible = false
 layers = 1
 geometry/visible = true
 geometry/material_override = null
@@ -345,5 +384,72 @@ geometry/depth_scale = false
 geometry/visible_in_all_rooms = false
 geometry/use_baked_light = false
 geometry/baked_light_tex_id = 0
+
+[node name="Viewport" type="Viewport" parent="."]
+
+rect = Rect2( 0, 0, 390, 140 )
+own_world = false
+world = null
+transparent_bg = false
+render_target/enabled = true
+render_target/v_flip = false
+render_target/clear_on_new_frame = true
+render_target/filter = false
+render_target/gen_mipmaps = false
+render_target/update_mode = 2
+audio_listener/enable_2d = false
+audio_listener/enable_3d = false
+physics/object_picking = false
+gui/disable_input = false
+
+[node name="Panel" parent="Viewport" instance=ExtResource( 2 )]
+
+margin/left = 10.0
+margin/top = 10.0
+margin/right = 400.0
+margin/bottom = 150.0
+
+[node name="Area" type="Area" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 0.499768, 0.0151081, -0.00186013, -0.012102, 0.35729, -0.349567, -0.00923338, 0.34945, 0.35749, -0.523489, 2.25128, 1.40537 )
+input/ray_pickable = true
+input/capture_on_drag = false
+shape_count = 0
+space_override = 0
+gravity_point = false
+gravity_distance_scale = 0.0
+gravity_vec = Vector3( 0, -1, 0 )
+gravity = 9.8
+linear_damp = 0.1
+angular_damp = 1.0
+priority = 0.0
+monitoring = true
+monitorable = true
+collision/layers = 1
+collision/mask = 1
+
+[node name="Quad" type="Quad" parent="Area"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, -2.23517e-08, 1.49012e-07, -7.45058e-09, 1, 0, 0, -3.72529e-08, 1, 0, 0, 0 )
+layers = 1
+geometry/visible = true
+geometry/material_override = SubResource( 5 )
+geometry/cast_shadow = 1
+geometry/receive_shadows = true
+geometry/range_begin = 0.0
+geometry/range_end = 0.0
+geometry/extra_cull_margin = 0.0
+geometry/billboard = false
+geometry/billboard_y = false
+geometry/depth_scale = false
+geometry/visible_in_all_rooms = false
+geometry/use_baked_light = false
+geometry/baked_light_tex_id = 0
+quad/axis = 2
+quad/size = Vector2( 3.9, 1.4 )
+quad/offset = Vector2( 0, 0 )
+quad/centered = true
 
 

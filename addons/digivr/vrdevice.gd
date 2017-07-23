@@ -18,7 +18,7 @@ var parameters = {
 "vendor": "",
 "screen_to_lens_distance": 0.0,
 "inter_lens_distance": 0.0,
-"tray_to_lenses_distance": 0.0,
+"tray_to_lenses_distance": 0.5,
 "distortion_coefficients": [0.0]
 }
 

@@ -368,7 +368,7 @@ func _on_change_resolution():
 		y_pos = (screen.get("size").y - screen.get_pixels(device.get("tray_to_lenses_distance"))) - (get_eye_reticle(EYE_LEFT).get_size().y / 2)
 
 	get_eye_reticle(EYE_LEFT).set_pos(Vector2((screen.get("size").x / 2.0) - (reticle_size / 2) - screen.get_pixels(device.get("inter_lens_distance") / 2.0),y_pos))
-	get_eye_reticle(EYE_RIGHT).set_pos(Vector2((screen.get("size").x / 2.0) - (reticle_size / 2) + screen.get_pixels(device.get("inter_lens_distance") / 2.0),y_pos))
+	get_eye_reticle(EYE_RIGHT).set_pos(Vector2((screen.get("size").x / 2.0) - (reticle_size / 2) + screen.get_pixels(device.get("inter_lens_distance")  / 2.0)-50,y_pos))
 
 func _on_settings_ok_pressed():
 	var device_name_combo = get_node(@"VRCamera/SettingsPanel/Settings/SettingsCenter/SettingsGrid/DeviceNameCombo")

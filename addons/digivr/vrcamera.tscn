@@ -89,7 +89,6 @@ v_offset = 0.0
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
-editor/display_folded = true
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -184,6 +183,7 @@ stretch_mode = 0
 
 [node name="propriedadel" type="Label" parent="HUD"]
 
+visibility/visible = false
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -199,6 +199,7 @@ max_lines_visible = -1
 
 [node name="tempol" type="Label" parent="HUD"]
 
+visibility/visible = false
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -214,6 +215,7 @@ max_lines_visible = -1
 
 [node name="pontosl" type="Label" parent="HUD"]
 
+visibility/visible = false
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -229,6 +231,7 @@ max_lines_visible = -1
 
 [node name="propriedader" type="Label" parent="HUD"]
 
+visibility/visible = false
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -244,6 +247,7 @@ max_lines_visible = -1
 
 [node name="tempor" type="Label" parent="HUD"]
 
+visibility/visible = false
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -259,6 +263,7 @@ max_lines_visible = -1
 
 [node name="pontosr" type="Label" parent="HUD"]
 
+visibility/visible = false
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -274,6 +279,7 @@ max_lines_visible = -1
 
 [node name="hl1" type="TextureFrame" parent="HUD"]
 
+visibility/visible = false
 rect/scale = Vector2( 0.02, 0.02 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -288,6 +294,7 @@ stretch_mode = 0
 
 [node name="hr1" type="TextureFrame" parent="HUD"]
 
+visibility/visible = false
 rect/rotation = -5.24006
 rect/scale = Vector2( 0.02, 0.02 )
 focus/ignore_mouse = true
@@ -303,6 +310,7 @@ stretch_mode = 0
 
 [node name="hl2" type="TextureFrame" parent="HUD"]
 
+visibility/visible = false
 rect/scale = Vector2( 0.02, 0.02 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -317,6 +325,7 @@ stretch_mode = 0
 
 [node name="hr2" type="TextureFrame" parent="HUD"]
 
+visibility/visible = false
 rect/scale = Vector2( 0.02, 0.02 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -331,6 +340,7 @@ stretch_mode = 0
 
 [node name="hl3" type="TextureFrame" parent="HUD"]
 
+visibility/visible = false
 rect/scale = Vector2( 0.02, 0.02 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -345,6 +355,7 @@ stretch_mode = 0
 
 [node name="hr3" type="TextureFrame" parent="HUD"]
 
+visibility/visible = false
 rect/scale = Vector2( 0.02, 0.02 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -359,6 +370,7 @@ stretch_mode = 0
 
 [node name="Label" type="Label" parent="HUD"]
 
+visibility/visible = false
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -545,24 +557,5 @@ cast_to = Vector3( 0, 0, -20 )
 layer_mask = 1
 type_mask = 15
 script/script = ExtResource( 8 )
-
-[node name="TestCube" type="TestCube" parent="RayCast"]
-
-_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, -5.7166 )
-layers = 1
-geometry/visible = true
-geometry/material_override = null
-geometry/cast_shadow = 1
-geometry/receive_shadows = true
-geometry/range_begin = 0.0
-geometry/range_end = 0.0
-geometry/extra_cull_margin = 0.0
-geometry/billboard = false
-geometry/billboard_y = false
-geometry/depth_scale = false
-geometry/visible_in_all_rooms = false
-geometry/use_baked_light = false
-geometry/baked_light_tex_id = 0
 
 

@@ -15,6 +15,7 @@ func init_root(global_node, root_node, parent_node):
 var posicao = [Vector3(-5,2,-10),Vector3(0,2,-10),Vector3(5,2,-10)]
 var posicao2 = [Vector3(-3,2,-10),Vector3(3,2,-10)]
 func _ready():
+ get_node("Area/Quad").get_material_override().set_texture(FixedMaterial.PARAM_DIFFUSE, get_node("Viewport").get_render_target_texture())
  var temporestante = 10
  Globals.set("PROP","")
  Globals.set("tempo",temporestante)

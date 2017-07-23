@@ -148,6 +148,8 @@ quad/centered = true
 
 [node name="voltar" parent="." instance=ExtResource( 4 )]
 
+transform/local = Transform( 1, 0, 0, 0, 0.82271, 0.568462, 0, -0.568462, 0.82271, -0.372721, -2.83118, -5.34745 )
+
 [node name="Spatial" parent="." instance=ExtResource( 5 )]
 
 
