@@ -1,0 +1,568 @@
+[gd_scene load_steps=9 format=1]
+
+[ext_resource path="res://addons/digivr/reticles/Recticle_Round_Active.png" type="Texture" id=1]
+[ext_resource path="res://addons/digivr/vrsettings.png" type="Texture" id=2]
+[ext_resource path="res://addons/digivr/eyeseparator.png" type="Texture" id=3]
+[ext_resource path="res://fonts/gomab.fnt" type="BitmapFont" id=4]
+[ext_resource path="res://image/coracao.png" type="Texture" id=5]
+[ext_resource path="res://addons/digivr/vrsettings_ok.png" type="Texture" id=6]
+[ext_resource path="res://addons/digivr/vrsettings_cancel.png" type="Texture" id=7]
+[ext_resource path="res://scripts/RayCastVR.gd" type="Script" id=8]
+
+[node name="VRCamera" type="Spatial"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="LeftEyeFlatViewport" type="ViewportSprite" parent="."]
+
+viewport = NodePath("../LeftEyeViewport")
+centered = false
+
+[node name="RightEyeFlatViewport" type="ViewportSprite" parent="."]
+
+viewport = NodePath("../RightEyeViewport")
+centered = false
+
+[node name="LeftEyeViewport" type="Viewport" parent="."]
+
+editor/display_folded = true
+rect = Rect2( 0, 0, 0, 0 )
+own_world = false
+world = null
+transparent_bg = false
+render_target/enabled = true
+render_target/v_flip = false
+render_target/clear_on_new_frame = true
+render_target/filter = false
+render_target/gen_mipmaps = false
+render_target/update_mode = 2
+audio_listener/enable_2d = false
+audio_listener/enable_3d = false
+physics/object_picking = false
+gui/disable_input = false
+
+[node name="LeftEyeCamera" type="Camera" parent="LeftEyeViewport"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+projection = 0
+fov = 60.0
+near = 0.1
+far = 100.0
+keep_aspect = 1
+current = true
+visible_layers = 1048575
+environment = null
+h_offset = 0.0
+v_offset = 0.0
+
+[node name="RightEyeViewport" type="Viewport" parent="."]
+
+editor/display_folded = true
+rect = Rect2( 0, 0, 0, 0 )
+own_world = false
+world = null
+transparent_bg = false
+render_target/enabled = true
+render_target/v_flip = false
+render_target/clear_on_new_frame = true
+render_target/filter = false
+render_target/gen_mipmaps = false
+render_target/update_mode = 2
+audio_listener/enable_2d = false
+audio_listener/enable_3d = false
+physics/object_picking = false
+gui/disable_input = false
+
+[node name="RightEyeCamera" type="Camera" parent="RightEyeViewport"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+projection = 0
+fov = 60.0
+near = 0.1
+far = 100.0
+keep_aspect = 1
+current = true
+visible_layers = 1048575
+environment = null
+h_offset = 0.0
+v_offset = 0.0
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+editor/display_folded = true
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+
+[node name="RightEyeReticle" type="TextureProgress" parent="HUD"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
+range/min = 0.0
+range/max = 60.0
+range/step = 1.0
+range/page = 0.0
+range/value = 60.0
+range/exp_edit = false
+range/rounded = false
+texture/under = null
+texture/over = null
+texture/progress = ExtResource( 1 )
+mode = 4
+radial_fill/fill_degrees = 360.0
+radial_fill/center_offset = Vector2( 0, 0 )
+
+[node name="LeftEyeReticle" type="TextureProgress" parent="HUD"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
+range/min = 0.0
+range/max = 60.0
+range/step = 1.0
+range/page = 0.0
+range/value = 60.0
+range/exp_edit = false
+range/rounded = false
+texture/under = null
+texture/over = null
+texture/progress = ExtResource( 1 )
+mode = 4
+radial_fill/fill_degrees = 360.0
+radial_fill/center_offset = Vector2( 0, 0 )
+
+[node name="SettingsButton" type="TextureButton" parent="HUD"]
+
+anchor/left = 3
+anchor/top = 1
+anchor/right = 3
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 20.0
+margin/top = 40.0
+margin/right = -20.0
+margin/bottom = 0.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 2 )
+textures/pressed = ExtResource( 2 )
+textures/hover = ExtResource( 2 )
+textures/focused = ExtResource( 2 )
+
+[node name="EyeSeparator" type="TextureFrame" parent="HUD"]
+
+anchor/left = 3
+anchor/right = 3
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 2.0
+margin/top = 0.0
+margin/right = -2.0
+margin/bottom = 50.0
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 0
+
+[node name="propriedadel" type="Label" parent="HUD"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 60.0
+margin/top = 50.0
+margin/right = 100.0
+margin/bottom = 84.0
+custom_fonts/font = ExtResource( 4 )
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="tempol" type="Label" parent="HUD"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 360.0
+margin/top = 50.0
+margin/right = 400.0
+margin/bottom = 84.0
+custom_fonts/font = ExtResource( 4 )
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="pontosl" type="Label" parent="HUD"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 20.0
+margin/top = 110.0
+margin/right = 60.0
+margin/bottom = 144.0
+custom_fonts/font = ExtResource( 4 )
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="propriedader" type="Label" parent="HUD"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 660.0
+margin/top = 60.0
+margin/right = 700.0
+margin/bottom = 94.0
+custom_fonts/font = ExtResource( 4 )
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="tempor" type="Label" parent="HUD"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 890.0
+margin/top = 50.0
+margin/right = 930.0
+margin/bottom = 84.0
+custom_fonts/font = ExtResource( 4 )
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="pontosr" type="Label" parent="HUD"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 550.0
+margin/top = 110.0
+margin/right = 590.0
+margin/bottom = 144.0
+custom_fonts/font = ExtResource( 4 )
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="hl1" type="TextureFrame" parent="HUD"]
+
+rect/scale = Vector2( 0.02, 0.02 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 360.0
+margin/top = 100.0
+margin/right = 1960.0
+margin/bottom = 1700.0
+texture = ExtResource( 5 )
+stretch_mode = 0
+
+[node name="hr1" type="TextureFrame" parent="HUD"]
+
+rect/rotation = -5.24006
+rect/scale = Vector2( 0.02, 0.02 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 935.0
+margin/top = 95.0
+margin/right = 2535.0
+margin/bottom = 1695.0
+texture = ExtResource( 5 )
+stretch_mode = 0
+
+[node name="hl2" type="TextureFrame" parent="HUD"]
+
+rect/scale = Vector2( 0.02, 0.02 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 400.0
+margin/top = 100.0
+margin/right = 2000.0
+margin/bottom = 1700.0
+texture = ExtResource( 5 )
+stretch_mode = 0
+
+[node name="hr2" type="TextureFrame" parent="HUD"]
+
+rect/scale = Vector2( 0.02, 0.02 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 975.0
+margin/top = 95.0
+margin/right = 2575.0
+margin/bottom = 1695.0
+texture = ExtResource( 5 )
+stretch_mode = 0
+
+[node name="hl3" type="TextureFrame" parent="HUD"]
+
+rect/scale = Vector2( 0.02, 0.02 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 440.0
+margin/top = 100.0
+margin/right = 2040.0
+margin/bottom = 1700.0
+texture = ExtResource( 5 )
+stretch_mode = 0
+
+[node name="hr3" type="TextureFrame" parent="HUD"]
+
+rect/scale = Vector2( 0.02, 0.02 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 1015.0
+margin/top = 95.0
+margin/right = 2615.0
+margin/bottom = 1695.0
+texture = ExtResource( 5 )
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="HUD"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 180.0
+margin/top = 470.0
+margin/right = 340.0
+margin/bottom = 514.0
+custom_fonts/font = ExtResource( 4 )
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="SettingsPanel" type="CanvasLayer" parent="."]
+
+editor/display_folded = true
+layer = 2
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+
+[node name="Settings" type="Panel" parent="SettingsPanel"]
+
+visibility/visible = false
+anchor/left = 2
+anchor/top = 2
+anchor/right = 2
+anchor/bottom = 2
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.2
+margin/top = 0.3
+margin/right = 0.8
+margin/bottom = 0.7
+
+[node name="SettingsCenter" type="CenterContainer" parent="SettingsPanel/Settings"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+use_top_left = false
+
+[node name="SettingsGrid" type="GridContainer" parent="SettingsPanel/Settings/SettingsCenter"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 307.0
+margin/top = 120.0
+margin/right = 307.0
+margin/bottom = 120.0
+columns = 2
+
+[node name="DeviceNameLabel" type="Label" parent="SettingsPanel/Settings/SettingsCenter/SettingsGrid"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 3.0
+margin/right = 88.0
+margin/bottom = 17.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Device name:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="DeviceNameCombo" type="OptionButton" parent="SettingsPanel/Settings/SettingsCenter/SettingsGrid"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 92.0
+margin/top = 0.0
+margin/right = 131.0
+margin/bottom = 20.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+align = 0
+selected = -1
+items = [  ]
+
+[node name="ScreenNameLabel" type="Label" parent="SettingsPanel/Settings/SettingsCenter/SettingsGrid"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 27.0
+margin/right = 88.0
+margin/bottom = 41.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Screen name:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="ScreenNameCombo" type="OptionButton" parent="SettingsPanel/Settings/SettingsCenter/SettingsGrid"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 92.0
+margin/top = 24.0
+margin/right = 131.0
+margin/bottom = 44.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+align = 0
+selected = -1
+items = [  ]
+
+[node name="OkButton" type="TextureButton" parent="SettingsPanel/Settings"]
+
+anchor/left = 3
+anchor/top = 1
+anchor/right = 3
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -40.0
+margin/top = 60.0
+margin/right = -80.0
+margin/bottom = 20.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 6 )
+textures/pressed = ExtResource( 6 )
+textures/hover = ExtResource( 6 )
+textures/disabled = ExtResource( 6 )
+textures/focused = ExtResource( 6 )
+
+[node name="CancelButton" type="TextureButton" parent="SettingsPanel/Settings"]
+
+anchor/left = 3
+anchor/top = 1
+anchor/right = 3
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 80.0
+margin/top = 60.0
+margin/right = 40.0
+margin/bottom = 20.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 7 )
+textures/pressed = ExtResource( 7 )
+textures/hover = ExtResource( 7 )
+textures/disabled = ExtResource( 7 )
+textures/focused = ExtResource( 7 )
+
+[node name="RayCast" type="RayCast" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0762678, 0, 0 )
+enabled = true
+cast_to = Vector3( 0, 0, -20 )
+layer_mask = 1
+type_mask = 15
+script/script = ExtResource( 8 )
+
+[node name="TestCube" type="TestCube" parent="RayCast"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, -5.7166 )
+layers = 1
+geometry/visible = true
+geometry/material_override = null
+geometry/cast_shadow = 1
+geometry/receive_shadows = true
+geometry/range_begin = 0.0
+geometry/range_end = 0.0
+geometry/extra_cull_margin = 0.0
+geometry/billboard = false
+geometry/billboard_y = false
+geometry/depth_scale = false
+geometry/visible_in_all_rooms = false
+geometry/use_baked_light = false
+geometry/baked_light_tex_id = 0
+
+

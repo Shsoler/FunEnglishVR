@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://addons/vr_mobile_camera/vr_mobile_camera.gd" type="Script" id=1]
+[ext_resource path="res://addons/vr_mobile_camera/icon.png" type="Texture" id=2]
+
+[node name="VRMobileCamera" type="Spatial"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0492748, 0 )
+script/script = ExtResource( 1 )
+__meta__ = { "_editor_icon":ExtResource( 2 ) }
+eyes_distance = 0.6
+eyes_convergence = 18.0
+walking_speed = 0.5
+stop_walking_while_selecting = true
+fov = 60
+near = 0.1
+far = 1000
+magnetometer_interpolation = 8
+enable_yaw = true
+enable_pitch = true
+enable_roll = true
+show_data = false
+
+

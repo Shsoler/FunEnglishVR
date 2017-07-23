@@ -1,0 +1,26 @@
+{
+    "distortion_coefficients": [
+        -0.05000000074505806,
+        0.05000000074505806
+    ],
+    "has_magnet": true,
+    "inter_lens_distance": 0.056,
+    "left_eye_fov_angles": [
+        50,
+        50,
+        50,
+        50
+    ],
+    "model": "VR Box",
+    "primary_button": 0,
+    "right_eye_fov_angles": [
+        50,
+        50,
+        50,
+        50
+    ],
+    "screen_to_lens_distance": 0.054999999701976776,
+    "tray_to_lens_distance": 0.03500000014901161,
+    "vendor": "Some Customer",
+    "vertical_alignment": 1
+}

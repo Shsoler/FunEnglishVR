@@ -5,6 +5,7 @@ var pontos = 0
 var fase = load("res://WorldEnvironment.tscn").instance()
 var ref
 func _ready():
+	Globals.set("gamemode", true)
 	Globals.set("vidas",3)
 	Globals.set("pontos",0)
 	Globals.set("next",false)

@@ -12,8 +12,8 @@ func init_root(global_node, root_node, parent_node):
     root = root_node
     parent = parent_node
 
-var posicao = [Vector3(-5,2,-5),Vector3(0,2,-5),Vector3(5,2,-5)]
-var posicao2 = [Vector3(-3,2,-5),Vector3(3,2,-5)]
+var posicao = [Vector3(-5,2,-10),Vector3(0,2,-10),Vector3(5,2,-10)]
+var posicao2 = [Vector3(-3,2,-10),Vector3(3,2,-10)]
 func _ready():
  var temporestante = 10
  Globals.set("PROP","")

@@ -153,6 +153,7 @@ textures/shade_param_tc = 0
 [node name="WorldEnvironment" type="WorldEnvironment"]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.1283 )
 environment = null
 script/script = ExtResource( 1 )
 
