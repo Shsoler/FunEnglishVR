@@ -22,7 +22,7 @@ script/script = ExtResource( 1 )
 [node name="START" type="KinematicBody" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 0.999314, 0, -0.037018, 0, 1, 0, 0.037018, 0, 0.999314, -0.0524464, 0.847814, -6.61556 )
+transform/local = Transform( 0.999314, 0, -0.037018, 0, 1, 0, 0.037018, 0, 0.999314, 0.434801, 0.847814, -9.94243 )
 input/ray_pickable = true
 input/capture_on_drag = false
 shape_count = 1
@@ -84,7 +84,7 @@ _update_shape_index = 0
 [node name="HOW" type="KinematicBody" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( -0.0252802, -0.0931109, 0.995334, 0.0354135, 0.994945, 0.0939738, -0.999052, 0.037624, -0.021855, -5.185, 0.847814, -4.2243 )
+transform/local = Transform( -0.0252802, -0.0931109, 0.995334, 0.0354135, 0.994945, 0.0939738, -0.999052, 0.037624, -0.021855, -4.69775, 0.847814, -7.55117 )
 input/ray_pickable = true
 input/capture_on_drag = false
 shape_count = 1
@@ -148,7 +148,7 @@ _update_shape_index = 0
 
 editor/display_folded = true
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 0.986671, 0, -0.162731, 0, 1, 0, 0.162731, 0, 0.986671, 5.03139, 0.847814, -3.39654 )
+transform/local = Transform( 0.986671, 0, -0.162731, 0, 1, 0, 0.162731, 0, 0.986671, 5.51864, 0.872196, -6.72341 )
 input/ray_pickable = true
 input/capture_on_drag = false
 shape_count = 1

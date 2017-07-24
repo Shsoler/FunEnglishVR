@@ -12,7 +12,7 @@ environment = null
 [node name="comojogar" type="KinematicBody" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.372721, 2.54858, -5.34745 )
+transform/local = Transform( 1, 0, 0, 0, 0.846998, -0.531596, 0, 0.531596, 0.846998, 1.57497, 8.5481, -5.34745 )
 input/ray_pickable = true
 input/capture_on_drag = false
 shape_count = 0
@@ -60,6 +60,8 @@ region = false
 region_rect = Rect2( 0, 0, 0, 0 )
 
 [node name="voltar" parent="." instance=ExtResource( 2 )]
+
+transform/local = Transform( 1, 0, 0, 0, 0.993018, 0.117964, 0, -0.117964, 0.993018, 1.57497, 0.596884, -5.34745 )
 
 [node name="Spatial" parent="." instance=ExtResource( 3 )]
 
