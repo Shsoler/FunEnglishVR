@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=1]
+[gd_scene load_steps=9 format=1]
 
 [ext_resource path="res://WorldEnvironment.gd" type="Script" id=1]
 [ext_resource path="res://painelGUI.tscn" type="PackedScene" id=2]
+[ext_resource path="res://voltar.tscn" type="PackedScene" id=3]
 
 [sub_resource type="FixedMaterial" id=1]
 
@@ -312,7 +313,7 @@ collision/mask = 1
 [node name="TestCube 2" type="TestCube" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 17, 12.9404, 3.81948, -4.39103 )
+transform/local = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 17, 12.9404, 4.249, -4.39103 )
 layers = 1
 geometry/visible = true
 geometry/material_override = SubResource( 1 )
@@ -451,5 +452,9 @@ quad/axis = 2
 quad/size = Vector2( 3.9, 1.4 )
 quad/offset = Vector2( 0, 0 )
 quad/centered = true
+
+[node name="voltar" parent="." instance=ExtResource( 3 )]
+
+transform/local = Transform( 1, 0, 0, 0, 0.612233, 0.790678, 0, -0.790678, 0.612233, 0.616353, -5.40264, -5.34745 )
 
 

@@ -52,7 +52,7 @@ script/script = ExtResource( 1 )
 [node name="Sprite3D" type="Sprite3D" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.99867, -6.68056 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.44019, 2.99867, -9.72203 )
 layers = 1
 geometry/visible = true
 geometry/material_override = null
@@ -107,7 +107,7 @@ gui/disable_input = false
 [node name="Area" type="Area" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.74935, -6.12172 )
+transform/local = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 1.44019, 1.74935, -9.16319 )
 input/ray_pickable = true
 input/capture_on_drag = false
 shape_count = 0
@@ -148,7 +148,7 @@ quad/centered = true
 
 [node name="voltar" parent="." instance=ExtResource( 4 )]
 
-transform/local = Transform( 1, 0, 0, 0, 0.82271, 0.568462, 0, -0.568462, 0.82271, -0.372721, -2.83118, -5.34745 )
+transform/local = Transform( 1, 0, 0, 0, 0.82271, 0.568462, 0, -0.568462, 0.82271, 1.06747, -2.83118, -8.38892 )
 
 [node name="Spatial" parent="." instance=ExtResource( 5 )]
 

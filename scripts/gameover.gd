@@ -6,4 +6,5 @@ extends WorldEnvironment
 
 func _ready():
 	get_node("Area/Quad").get_material_override().set_texture(FixedMaterial.PARAM_DIFFUSE, get_node("Viewport").get_render_target_texture())
+	Globals.set("gamemode",false)
 	pass

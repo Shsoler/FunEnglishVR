@@ -56,6 +56,8 @@ func playmode():
 
 	pass
 func playcolission(objetocolisao):
+	if objetocolisao.get("acao"):
+		get_tree().change_scene("res://GameOVer.tscn")
 	get_node("../HUD/Label").set_text(objetocolisao.propriedade)
 	if objetocolisao.propriedade == Globals.get("PROP"):
 		var pontos = Globals.get("pontos")
